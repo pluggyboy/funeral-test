@@ -12,8 +12,11 @@
       CMS.init({
         config: {
           backend: {
-            name: 'git-gateway',
+            name: 'github',
+            repo: 'pluggyboy/funeral-test',
             branch: 'master',
+            base_url: 'https://funeral-test.vercel.app',
+            auth_endpoint: 'api/auth',
           },
           media_folder: "images/uploads",
           public_folder: "/images/uploads",
