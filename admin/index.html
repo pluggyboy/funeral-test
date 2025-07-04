@@ -4,9 +4,131 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
-</head>
-<body>
-  <!-- Include the script that builds the page and powers Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    CMS.init({
+      config: {
+        backend: {
+          name: 'git-gateway',
+          branch: 'master',
+        },
+        media_folder: 'images/uploads',
+        public_folder: '/images/uploads',
+        collections: [
+          {
+            name: 'pages',
+            label: 'Website Pages',
+            files: [
+              {
+                label: 'Homepage',
+                name: 'homepage',
+                file: 'content/homepage.md',
+                fields: [
+                  { label: 'Site Title', name: 'site_title', widget: 'string' },
+                  { label: 'Meta Description', name: 'meta_description', widget: 'text' },
+                  { label: 'Location', name: 'location', widget: 'string' },
+                  { label: 'Open Graph Image', name: 'og_image', widget: 'image', required: false },
+                  { label: 'Company Name', name: 'company_name', widget: 'string' },
+                  { label: 'Phone Number', name: 'phone_number', widget: 'string' },
+                  { label: 'Emergency Phone', name: 'emergency_phone', widget: 'string' },
+                  { label: 'Email Address', name: 'email', widget: 'string' },
+                  { label: 'Business Address', name: 'address', widget: 'text' },
+                  { label: 'Opening Hours', name: 'opening_hours', widget: 'string' },
+                  {
+                    label: 'Hero Section',
+                    name: 'hero_section',
+                    widget: 'object',
+                    fields: [
+                      { label: 'Background Image', name: 'hero_background_image', widget: 'image' },
+                      { label: 'Hero Title', name: 'hero_title', widget: 'string' },
+                      { label: 'Hero Description', name: 'hero_description', widget: 'text' },
+                      { label: 'Call-to-Action Button Text', name: 'hero_cta_text', widget: 'string' },
+                    ],
+                  },
+                  {
+                    label: 'Services Section',
+                    name: 'services_section',
+                    widget: 'object',
+                    fields: [
+                      { label: 'Services Title', name: 'services_title', widget: 'string' },
+                      { label: 'Service 1', name: 'service_1', widget: 'object', fields: [{ label: 'Title', name: 'title', widget: 'string' }, { label: 'Description', name: 'description', widget: 'text' }] },
+                      { label: 'Service 2', name: 'service_2', widget: 'object', fields: [{ label: 'Title', name: 'title', widget: 'string' }, { label: 'Description', name: 'description', widget: 'text' }] },
+                      { label: 'Service 3', name: 'service_3', widget: 'object', fields: [{ label: 'Title', name: 'title', widget: 'string' }, { label: 'Description', name: 'description', widget: 'text' }] },
+                      { label: 'Service 4', name: 'service_4', widget: 'object', fields: [{ label: 'Title', name: 'title', widget: 'string' }, { label: 'Description', name: 'description', widget: 'text' }] },
+                      { label: 'Service 5', name: 'service_5', widget: 'object', fields: [{ label: 'Title', name: 'title', widget: 'string' }, { label: 'Description', name: 'description', widget: 'text' }] },
+                      { label: 'Service 6', name: 'service_6', widget: 'object', fields: [{ label: 'Title', name: 'title', widget: 'string' }, { label: 'Description', name: 'description', widget: 'text' }] },
+                    ],
+                  },
+                  {
+                    label: 'About Section',
+                    name: 'about_section',
+                    widget: 'object',
+                    fields: [
+                      { label: 'About Title', name: 'about_title', widget: 'string' },
+                      { label: 'About Paragraph 1', name: 'about_paragraph_1', widget: 'text' },
+                      { label: 'About Paragraph 2', name: 'about_paragraph_2', widget: 'text' },
+                      { label: 'About Paragraph 3', name: 'about_paragraph_3', widget: 'text' },
+                      { label: 'About Image', name: 'about_image', widget: 'image' },
+                      { label: 'About Image Alt Text', name: 'about_image_alt', widget: 'string' },
+                    ],
+                  },
+                  {
+                    label: 'Testimonials Section',
+                    name: 'testimonials_section',
+                    widget: 'object',
+                    fields: [
+                      { label: 'Testimonials Title', name: 'testimonials_title', widget: 'string' },
+                      { label: 'Testimonial 1', name: 'testimonial_1', widget: 'object', fields: [{ label: 'Testimonial Text', name: 'text', widget: 'text' }, { label: 'Author', name: 'author', widget: 'string' }] },
+                    ],
+                  },
+                  {
+                    label: 'Contact Section',
+                    name: 'contact_section',
+                    widget: 'object',
+                    fields: [
+                      { label: 'Contact Title', name: 'contact_title', widget: 'string' },
+                      { label: 'Contact Description', name: 'contact_description', widget: 'text' },
+                    ],
+                  },
+                  {
+                    label: 'Footer',
+                    name: 'footer',
+                    widget: 'object',
+                    fields: [
+                      { label: 'Footer Description', name: 'footer_description', widget: 'text' },
+                      { label: 'Current Year', name: 'current_year', widget: 'string' },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: 'guidance',
+            label: 'Guidance Articles',
+            folder: 'content/guidance',
+            create: true,
+            slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
+            fields: [
+              { label: 'Title', name: 'title', widget: 'string' },
+              { label: 'Publish Date', name: 'date', widget: 'datetime' },
+              { label: 'Featured Image', name: 'featured_image', widget: 'image', required: false },
+              { label: 'Excerpt', name: 'excerpt', widget: 'text' },
+              { label: 'Body', name: 'body', widget: 'markdown' },
+              { label: 'Categories', name: 'categories', widget: 'list', default: ['Support'] },
+              { label: 'Show on Homepage', name: 'featured', widget: 'boolean', default: false },
+            ],
+          },
+        ],
+        publish_mode: 'editorial_workflow',
+        media_library: {
+          name: 'uploadcare',
+          config: {
+            publicKey: 'demopublickey',
+          },
+        },
+      },
+    });
+  </script>
 </body>
 </html>
