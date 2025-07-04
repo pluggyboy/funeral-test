@@ -8,16 +8,11 @@ class TemplateEngine {
     }
 
     async init() {
-        alert('DEBUG: 1. Engine starting init()');
         try {
             await this.loadContent();
-            alert('DEBUG: 2. Content loaded successfully');
             this.replaceVariables();
-            alert('DEBUG: 3. Variables replaced successfully');
             this.initializeFeatures();
-            alert('DEBUG: 4. Features initialized');
         } catch (error) {
-            alert(`DEBUG: 5. ERROR! ${error.message}`);
             console.error('Template engine initialization failed:', error);
         }
     }
