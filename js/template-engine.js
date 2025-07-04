@@ -8,28 +8,29 @@ class TemplateEngine {
     }
 
     async init() {
+        alert('DEBUG: 1. Engine starting init()');
         try {
             await this.loadContent();
+            alert('DEBUG: 2. Content loaded successfully');
             this.replaceVariables();
+            alert('DEBUG: 3. Variables replaced successfully');
             this.initializeFeatures();
+            alert('DEBUG: 4. Features initialized');
         } catch (error) {
+            alert(`DEBUG: 5. ERROR! ${error.message}`);
             console.error('Template engine initialization failed:', error);
         }
     }
 
     async loadContent() {
-        // In a real implementation, this would load from your CMS
-        // For now, we'll use the sample data
         const response = await fetch('/content/homepage.md');
         if (!response.ok) {
             throw new Error(`Failed to fetch content: ${response.statusText}`);
         }
         const markdown = await response.text();
         
-        // Parse frontmatter (YAML between --- markers)
         const frontmatterMatch = markdown.match(/^---\n([\s\S]*?)\n---/);
         if (frontmatterMatch) {
-            // A simple regex-based YAML parser.
             const yamlString = frontmatterMatch[1];
             const lines = yamlString.split('\n');
             const data = {};
@@ -38,9 +39,7 @@ class TemplateEngine {
 
             lines.forEach(line => {
                 if (!line.trim() || line.trim().startsWith('#')) return;
-
                 const indent = line.match(/^\s*/)[0].length;
-
                 if (indent === 0) {
                     const [key, value] = line.split(/:(.*)/s);
                     currentSection = key.trim();
@@ -73,26 +72,20 @@ class TemplateEngine {
 
     createTemplateData(data) {
         const templateData = {};
-
-        // This function correctly flattens the nested data from the CMS 
-        // to match the {{placeholder}} keys used in the HTML template.
         Object.keys(data).forEach(sectionKey => {
             const section = data[sectionKey];
             if (typeof section === 'object' && section !== null) {
                 Object.keys(section).forEach(itemKey => {
                     const item = section[itemKey];
                     if (typeof item === 'object' && item !== null) {
-                        // Handles nested items like service_1, testimonial_1
                         Object.keys(item).forEach(propKey => {
                             templateData[`${itemKey}_${propKey}`] = item[propKey];
                         });
                     } else {
-                        // Handles direct properties like hero_title, about_title
                         templateData[itemKey] = item;
                     }
                 });
             } else {
-                // Handles top-level properties like company_name
                 templateData[sectionKey] = section;
             }
         });
@@ -103,19 +96,15 @@ class TemplateEngine {
         const templateData = this.createTemplateData(this.contentData);
         let fullHTML = document.documentElement.innerHTML;
 
-        // Replace all {{variable}} placeholders
         Object.keys(templateData).forEach(key => {
-            // Create a global regex to replace all occurrences of the placeholder
             const placeholder = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
             fullHTML = fullHTML.replace(placeholder, templateData[key] || '');
         });
         
-        // Update the document with the processed HTML
         document.documentElement.innerHTML = fullHTML;
     }
 
     initializeFeatures() {
-        // Re-initialize JavaScript features after content replacement
         this.initSmoothScrolling();
         this.initFormHandling();
         this.initAnimations();
@@ -171,7 +160,6 @@ class TemplateEngine {
     }
 }
 
-// Initialize template engine when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new TemplateEngine();
 });
