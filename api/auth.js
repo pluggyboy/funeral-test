@@ -4,7 +4,7 @@ export default function handler(req, res) {
   if (!code) {
     // Redirect to GitHub OAuth
     const clientId = process.env.GITHUB_CLIENT_ID;
-    const redirectUri = `${process.env.VERCEL_URL || 'https://funeral-test.vercel.app'}/api/auth`;
+    const redirectUri = `https://funeral-test.vercel.app/api/auth`;
     const scope = 'repo,user';
     
     const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
