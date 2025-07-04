@@ -4,3 +4,9 @@ Thumbs.db
 
 # Log files
 *.log
+
+# Node modules
+node_modules/
+
+# Keep template file safe
+index.template.html

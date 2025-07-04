@@ -1,0 +1,11 @@
+{
+  "name": "funeral-home-template",
+  "version": "1.0.0",
+  "description": "Static site template with Decap CMS",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

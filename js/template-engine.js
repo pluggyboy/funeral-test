@@ -9,8 +9,16 @@ class TemplateEngine {
 
     async init() {
         try {
-            await this.loadContent();
-            this.replaceVariables();
+            // Check if content has already been pre-rendered during build
+            const hasTemplateVars = document.documentElement.innerHTML.includes('{{');
+            
+            if (hasTemplateVars) {
+                // Only load and replace if we find template variables
+                await this.loadContent();
+                this.replaceVariables();
+            }
+            
+            // Always initialize interactive features
             this.initializeFeatures();
         } catch (error) {
             console.error('Template engine initialization failed:', error);
