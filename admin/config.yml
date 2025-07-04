@@ -258,9 +258,3 @@ collections:
 
 # Editorial workflow for content review
 publish_mode: editorial_workflow
-
-# Enable media library
-media_library:
-  name: uploadcare
-  config:
-    publicKey: "demopublickey"
