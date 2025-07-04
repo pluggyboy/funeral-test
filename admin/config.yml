@@ -1,0 +1,266 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "pages"
+    label: "Website Pages"
+    files:
+      - label: "Homepage"
+        name: "homepage"
+        file: "content/homepage.md"
+        fields:
+          # SEO & Meta
+          - label: "Site Title"
+            name: "site_title"
+            widget: "string"
+            hint: "Appears in browser tab and search results"
+          
+          - label: "Meta Description"
+            name: "meta_description"
+            widget: "text"
+            hint: "Brief description for search engines (150-160 characters)"
+            pattern: ['.{50,160}', "Must be between 50-160 characters"]
+          
+          - label: "Location"
+            name: "location"
+            widget: "string"
+            hint: "City/area you serve (e.g., 'Manchester', 'Greater London')"
+          
+          - label: "Open Graph Image"
+            name: "og_image"
+            widget: "image"
+            hint: "Image shown when shared on social media (1200x630px recommended)"
+            required: false
+
+          # Company Details
+          - label: "Company Name"
+            name: "company_name"
+            widget: "string"
+          
+          - label: "Phone Number"
+            name: "phone_number"
+            widget: "string"
+            hint: "Main business phone number"
+          
+          - label: "Emergency Phone"
+            name: "emergency_phone"
+            widget: "string"
+            hint: "24/7 emergency contact number"
+          
+          - label: "Email Address"
+            name: "email"
+            widget: "string"
+          
+          - label: "Business Address"
+            name: "address"
+            widget: "text"
+            hint: "Full business address including postcode"
+          
+          - label: "Opening Hours"
+            name: "opening_hours"
+            widget: "string"
+            hint: "e.g., 'Monday-Friday 9am-5pm, Saturday 9am-1pm'"
+
+          # Hero Section
+          - label: "Hero Section"
+            name: "hero_section"
+            widget: "object"
+            fields:
+              - label: "Background Image"
+                name: "hero_background_image"
+                widget: "image"
+                hint: "Large hero background image (1920x1080px recommended)"
+              
+              - label: "Hero Title"
+                name: "hero_title"
+                widget: "string"
+                hint: "Main heading on homepage"
+                default: "Compassionate Care When You Need It Most"
+              
+              - label: "Hero Description"
+                name: "hero_description"
+                widget: "text"
+                hint: "Supportive message under the main title"
+                default: "Providing dignified funeral services with empathy and respect for over 25 years. We're here to guide you through this difficult time."
+              
+              - label: "Call-to-Action Button Text"
+                name: "hero_cta_text"
+                widget: "string"
+                default: "Contact Us Today"
+
+          # Services Section
+          - label: "Services Section"
+            name: "services_section"
+            widget: "object"
+            fields:
+              - label: "Services Title"
+                name: "services_title"
+                widget: "string"
+                default: "Our Services"
+              
+              - label: "Service 1"
+                name: "service_1"
+                widget: "object"
+                fields:
+                  - {label: "Title", name: "title", widget: "string", default: "Funeral Planning"}
+                  - {label: "Description", name: "description", widget: "text", default: "Complete funeral planning services tailored to your wishes and budget."}
+              
+              - label: "Service 2"
+                name: "service_2"
+                widget: "object"
+                fields:
+                  - {label: "Title", name: "title", widget: "string", default: "Bereavement Support"}
+                  - {label: "Description", name: "description", widget: "text", default: "Ongoing support and guidance for families during their time of grief."}
+              
+              - label: "Service 3"
+                name: "service_3"
+                widget: "object"
+                fields:
+                  - {label: "Title", name: "title", widget: "string", default: "Cremation Services"}
+                  - {label: "Description", name: "description", widget: "text", default: "Dignified cremation services with flexible memorial options."}
+              
+              - label: "Service 4"
+                name: "service_4"
+                widget: "object"
+                fields:
+                  - {label: "Title", name: "title", widget: "string", default: "Memorial Services"}
+                  - {label: "Description", name: "description", widget: "text", default: "Personalised memorial services celebrating a life well lived."}
+              
+              - label: "Service 5"
+                name: "service_5"
+                widget: "object"
+                fields:
+                  - {label: "Title", name: "title", widget: "string", default: "Transport Services"}
+                  - {label: "Description", name: "description", widget: "text", default: "Professional transportation with dignity and care."}
+              
+              - label: "Service 6"
+                name: "service_6"
+                widget: "object"
+                fields:
+                  - {label: "Title", name: "title", widget: "string", default: "Pre-Planning"}
+                  - {label: "Description", name: "description", widget: "text", default: "Plan ahead to ease the burden on your loved ones."}
+
+          # About Section
+          - label: "About Section"
+            name: "about_section"
+            widget: "object"
+            fields:
+              - label: "About Title"
+                name: "about_title"
+                widget: "string"
+                default: "About Our Family Business"
+              
+              - label: "About Paragraph 1"
+                name: "about_paragraph_1"
+                widget: "text"
+                hint: "First paragraph about your business"
+                default: "For over three generations, our family has been serving the local community during their most difficult times. We understand that losing a loved one is never easy, and we're here to provide the support and guidance you need."
+              
+              - label: "About Paragraph 2"
+                name: "about_paragraph_2"
+                widget: "text"
+                hint: "Second paragraph about your values/approach"
+                default: "Our approach is built on compassion, respect, and attention to detail. We believe every life deserves to be celebrated and remembered in a way that reflects their unique personality and the love they shared with family and friends."
+              
+              - label: "About Paragraph 3"
+                name: "about_paragraph_3"
+                widget: "text"
+                hint: "Third paragraph about your commitment"
+                default: "We're available 24 hours a day, 7 days a week, because we know that grief doesn't follow business hours. Our experienced team will handle every detail with care, allowing you to focus on what matters most - remembering and honoring your loved one."
+              
+              - label: "About Image"
+                name: "about_image"
+                widget: "image"
+                hint: "Professional image of your facility or team (800x600px recommended)"
+              
+              - label: "About Image Alt Text"
+                name: "about_image_alt"
+                widget: "string"
+                hint: "Describe the image for accessibility"
+                default: "Our funeral home facility"
+
+          # Testimonials Section
+          - label: "Testimonials Section"
+            name: "testimonials_section"
+            widget: "object"
+            fields:
+              - label: "Testimonials Title"
+                name: "testimonials_title"
+                widget: "string"
+                default: "Families We've Served"
+              
+              - label: "Testimonial 1"
+                name: "testimonial_1"
+                widget: "object"
+                fields:
+                  - label: "Testimonial Text"
+                    name: "text"
+                    widget: "text"
+                    hint: "Customer testimonial (keep respectful and appropriate)"
+                    default: "The team provided exceptional care and support during the most difficult time of our lives. Their attention to detail and genuine compassion made all the difference. We cannot thank them enough."
+                  
+                  - label: "Author"
+                    name: "author"
+                    widget: "string"
+                    hint: "Customer name (first name and last initial for privacy)"
+                    default: "Sarah M., Local Family"
+
+          # Contact Section
+          - label: "Contact Section"
+            name: "contact_section"
+            widget: "object"
+            fields:
+              - label: "Contact Title"
+                name: "contact_title"
+                widget: "string"
+                default: "We're Here to Help"
+              
+              - label: "Contact Description"
+                name: "contact_description"
+                widget: "text"
+                default: "Available 24/7 for immediate assistance. Please don't hesitate to reach out during this difficult time."
+
+          # Footer
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - label: "Footer Description"
+                name: "footer_description"
+                widget: "text"
+                hint: "Brief description of your business for the footer"
+                default: "Serving families with dignity, respect, and compassion. Established 1975."
+              
+              - label: "Current Year"
+                name: "current_year"
+                widget: "string"
+                hint: "Update this each year for copyright"
+                default: "2025"
+
+  # Blog/Guidance Posts Collection (for WordPress integration)
+  - name: "guidance"
+    label: "Guidance Articles"
+    folder: "content/guidance"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+      - {label: "Excerpt", name: "excerpt", widget: "text", hint: "Brief summary of the article"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Categories", name: "categories", widget: "list", default: ["Support"]}
+      - {label: "Show on Homepage", name: "featured", widget: "boolean", default: false}
+
+# Editorial workflow for content review
+publish_mode: editorial_workflow
+
+# Enable media library
+media_library:
+  name: uploadcare
+  config:
+    publicKey: "demopublickey"
