@@ -1,20 +1,8 @@
 {
-  "functions": {
-    "admin/index.html": {
-      "memory": 128
-    }
-  },
   "routes": [
     {
       "src": "/admin$",
       "dest": "/admin/index.html"
-    },
-    {
-      "src": "/admin/config.yml",
-      "dest": "/admin/config.yml",
-      "headers": {
-        "Content-Type": "text/yaml"
-      }
     },
     {
       "src": "/admin/(.*)",
