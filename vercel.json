@@ -1,23 +1,24 @@
 {
+  "functions": {
+    "admin/index.html": {
+      "memory": 128
+    }
+  },
   "routes": [
     {
-      "src": "/admin",
+      "src": "/admin$",
       "dest": "/admin/index.html"
+    },
+    {
+      "src": "/admin/config.yml",
+      "dest": "/admin/config.yml",
+      "headers": {
+        "Content-Type": "text/yaml"
+      }
     },
     {
       "src": "/admin/(.*)",
       "dest": "/admin/$1"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/admin/config.yml",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/yaml"
-        }
-      ]
     }
   ]
 }
